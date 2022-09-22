@@ -5,6 +5,8 @@ services:
     image: postgres
     volumes:
       - ./tmp/postgres_data:/var/lib/postgresql/data
+    networks:
+      - railsapp
   web:
     depends_on:
       - 'db'
@@ -17,3 +19,8 @@ services:
       - 3000:3000
     volumes:
       - .:/app
+    networks:
+      - railsapp
+networks:
+    railsapp:
+        driver: bridge
